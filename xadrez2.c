@@ -1,49 +1,51 @@
 #include <stdio.h>
 
+// Função que move a torre para a direita
+void moverTorre(int casas)
+{
+    // Verifica se ainda há casas para mover
+    if (casas > 0)
+    {
+        printf("Direita \n");  // Imprime a direção do movimento
+        moverTorre(casas - 1); // Chama a função recursivamente, decrementando o número de casas
+    }
+}
+
+// Função que move a rainha para a esquerda
+void moverRainha(int casas)
+{
+    // Verifica se ainda há casas para mover
+    if (casas > 0)
+    {
+        printf("Esquerda \n");  // Imprime a direção do movimento
+        moverRainha(casas - 1); // Chama a função recursivamente, decrementando o número de casas
+    }
+}
+
+// Função que move o bispo em um padrão diagonal
+void moverBispo(int casas)
+{
+    // Loop externo para controlar o movimento vertical (linhas)
+    for (int i = 0; i < casas; i++)
+    {
+        // Loop interno para controlar o movimento horizontal (colunas)
+        for (int j = 0; j < casas; j++)
+        {
+            // Verifica se estamos na diagonal (posição onde linha e coluna são iguais)
+            if (i == j)
+            {
+                printf("Cima, Direita \n"); // Imprime a direção do movimento do bispo
+            }
+        }
+    }
+}
+
+// Função principal do programa
 int main()
 {
-    // Declaração da variável de controle de loop
-    int i;
+    moverTorre(5);  // Chama a função para mover a torre 5 casas para a direita
+    moverBispo(5);  // Chama a função para mover o bispo em um padrão diagonal
+    moverRainha(8); // Chama a função para mover a rainha 8 casas para a esquerda
 
-    // Mover a torre 5x para a direita  utilizando for
-    printf("Movimentação da Torre:\n");
-    for (i = 0; i < 5; i++)
-    {
-        printf("Direita\n");
-    }
-
-    // Mover o bispo 5 vezes para diagonal =(cima + direita) utilizando do-while
-    printf("\nMovimentação do Bispo:\n");
-    i = 0; // Reinicializa a variável de controle
-    do
-    {
-        printf("Cima, Direita\n");
-        i++; // Incrementa o contador para avançar no loop
-    } while (i < 5); // Repete até que o Bispo tenha se movido 5 vezes
-
-    // Mover a rainha 8x para a esquerda utilizando while
-    printf("\nMovimentação da Rainha:\n");
-    i = 0; // Reinicializa a variável de controle
-    while (i < 8)
-    {
-        printf("Esquerda\n");
-        i++; // Incrementa o contador para evitar um loop infinito
-    }
-
-    // Atribuíção de uma variável para simular movimento do cavalo, ela terá o trabalho de contar quantas vezes o cavalo irá se mexer
-    int movimentoCavalo = 1; // Atribuir o valor de 1 significa que o cavalo vai se movimentar apenas uma vez
-
-    printf("\nMovimentação do Cavalo\n"); // Pula uma linha
-
-    while (movimentoCavalo--) // Após executar com o valor inicial 1 o decremento transforma o valor da variável em 0 e o loop acaba
-    {
-        for (int i = 0; i < 2; i++) // A variável i tem o trabalho de dizer quantas casas o cavalo vai andar dentro dessa uma movimentação
-        {
-            printf("Baixo \n"); // Imprime baixo 2x
-        }
-        printf("Esquerda \n"); // Imrpime esquerda apenas uma vez ao terminar o loop interno
-    }
-
-    // Retorna 0 para indicar que o programa finalizou com sucesso
-    return 0;
+    return 0; // Indica que o programa terminou com sucesso
 }
